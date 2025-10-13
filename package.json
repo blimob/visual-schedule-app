@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/blimob/visual-schedule-app/issues"
   },
-  "homepage": "https://github.com/blimob/visual-schedule-app#readme"
+  "homepage": "https://github.com/blimob/visual-schedule-app#readme",
+  "dependencies": {
+    "visual-schedule": "github:blimob/Visual-Schedule"
+  }
 }

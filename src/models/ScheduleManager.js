@@ -1,29 +1,56 @@
-import { Activity } from 'Visual-Schedule/src/Activity.js'
-import { Child } from 'Visual-Schedule/src/Child.js'
-import { DaySchedule } from 'Visual-Schedule/src/DaySchedule.js'
-import { getColorForDate } from 'Visual-Schedule/src/WeekdayColors.js'
+import { Child } from '/node_modules/visual-schedule/src/Child.js'
+import { Activity } from '/node_modules/visual-schedule/src/Activity.js'
+import { DaySchedule } from '/node_modules/visual-schedule/src/DaySchedule.js'
 
-// Create a child
-const emma = new Child('Emma', 6)
+export class ScheduleManager {
+  #currentChild
+  #daySchedules
 
-// Create activities
-const breakfast = new Activity('Breakfast', '07:30', '08:00').setIcon('🥐')
-const school = new Activity('School', '08:30', '15:00').setIcon('📚')
-const play = new Activity('Play time', '15:30', '17:00').setIcon('⚽')
+  constructor() {
+    this.#currentChild = new Child('Leon', 3)
+    this.#daySchedules = new Map()
 
-// Add activities to child
-emma.addActivity(breakfast)
-emma.addActivity(school)
-emma.addActivity(play)
+  }
+  createChild(name, age) {
+    this.#currentChild = new Child(name, age)
+    return this.#currentChild
+  }
 
-// Create daily schedule
-const today = new DaySchedule()
-today.addChild(emma)
+  getCurrentChild() {
+    return this.#currentChild
+  }
 
-// Get child's schedule
-const schedule = today.getChildSchedule(emma.id)
-console.log(`${schedule.child.name} has ${schedule.activities.length} activities`)
+  newActivity(name, startTime, endTime, icon) {
+    const activity = new Activity(name, startTime, endTime, icon)
+    if (icon) {
+      activity.setIcon(icon)
+    }
+    return activity
+  }
 
-// Get day color
-const dayColor = getColorForDate(new Date())
-console.log(`Today's color: ${dayColor}`)
+  addActivityToDate(date, name, startTime, endTime, icon) {
+    const activity = this.newActivity(name, startTime, endTime, icon)
+
+    this.#currentChild.addActivity(activity)
+
+    const dateKey = date.toISOString().split('T')[0]
+    if (!this.#daySchedules.has(dateKey)) {
+      const daySchedule = new DaySchedule(date)
+      daySchedule.addChild(this.#currentChild)
+      this.#daySchedules.set(dateKey, daySchedule)
+    }
+    return activity
+  }
+
+  getActivitiesForDate(date) {
+    return this.#currentChild.getActivitiesSorted()
+  }
+
+  getActivitiesForMonth(year, month) {
+    return this.#currentChild.getActivitiesSorted()
+  }
+
+  removeActivity(activity) {
+    return this.#currentChild.removeActivity(activity)
+  }
+}

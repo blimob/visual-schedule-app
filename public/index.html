@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual schedule</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>📅 Visual schedule for children</h1>
+    <p>Create colorful schedules with activities</p>
+  </header>
+
+  <main class="app-main">
+
+    <nav class="month-navigation">
+      <button id="prev-month" class="nav-btn">← Previous</button>
+      <h2 id="current-month-title">October 2025</h2>
+      <button id="next-month" class="nav-btn">Next →</button>
+    </nav>
+
+
+    <div class="weekdays-header">
+      <div class="weekday">Mon</div>
+      <div class="weekday">Tue</div>
+      <div class="weekday">Wed</div>
+      <div class="weekday">Thu</div>
+      <div class="weekday">Fri</div>
+      <div class="weekday">Sat</div>
+      <div class="weekday">Sun</div>
+    </div>
+
+    <div id="calendar-container" class="calendar-grid">
+    </div>
+
+    <div id="activity-form-container" class="modal hidden">
+      <div class="modal-content">
+        <h3>Add activity</h3>
+        <form id="activity-form-element">
+
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/src/index.js"></script>
+</body>
+</html>

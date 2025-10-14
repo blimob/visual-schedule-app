@@ -1,7 +1,7 @@
-import { Activity } from '../Visual-Schedule/src/Activity.js'
-import { Child } from '../Visual-Schedule/src/Child.js'
-import { DaySchedule } from '../Visual-Schedule/src/DaySchedule.js'
-import { getColorForDate } from '../Visual-Schedule/src/WeekdayColors.js'
+import { Activity } from '/node_modules/visual-schedule/src/Activity.js'
+import { Child } from '/node_modules/visual-schedule/src/Child.js'
+import { DaySchedule } from '/node_modules/visual-schedule/src/DaySchedule.js'
+import { getColorForDate } from '/node_modules/visual-schedule/src/weekdayColors.js'
 
 // Create a child
 const emma = new Child('Emma', 6)

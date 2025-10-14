@@ -2,6 +2,7 @@ import { Activity } from '/node_modules/visual-schedule/src/Activity.js'
 import { Child } from '/node_modules/visual-schedule/src/Child.js'
 import { DaySchedule } from '/node_modules/visual-schedule/src/DaySchedule.js'
 import { getColorForDate } from '/node_modules/visual-schedule/src/weekdayColors.js'
+import { CalendarModel } from './models/CalendarModel.js'
 
 // Create a child
 const emma = new Child('Emma', 6)
@@ -27,3 +28,14 @@ console.log(`${schedule.child.name} has ${schedule.activities.length} activities
 // Get day color
 const dayColor = getColorForDate(new Date())
 console.log(`Today's color: ${dayColor}`)
+
+const calendarModel = new CalendarModel()
+
+console.log('📅 Current month:', calendarModel.getCurrentMonth())
+console.log('📅 Month name:', calendarModel.getMonthName())
+console.log('📅 Days in month:', calendarModel.getDaysInMonth().length)
+
+const firstDay = calendarModel.getDaysInMonth()[0]
+console.log('📅 Första dagen är:', firstDay.toDateString())
+console.log('📅 Veckodag nummer:', firstDay.getDay())  // 0=Sön, 1=Mån, 2=Tis, 3=Ons...
+console.log('🎨 Färg:', calendarModel.getColorForDay(firstDay))

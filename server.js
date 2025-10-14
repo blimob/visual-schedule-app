@@ -3,11 +3,12 @@ import { readFile } from 'fs/promises'
 import { extname, join } from 'path'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
+import portfinder from 'portfinder'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const PORT = 3005
+const PORT = 3000
 
 const mimeTypes = {
   '.html': 'text/html',
@@ -61,6 +62,8 @@ const server = createServer(async (req, res) => {
   }
 })
 
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`)
+portfinder.getPort((err, port) => {
+  server.listen(port, () => {
+    console.log(` Server running at http://localhost:${port}/`)
+  })
 })

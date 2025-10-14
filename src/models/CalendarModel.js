@@ -15,6 +15,13 @@ export class CalendarModel {
   }
 
   getDaysInMonth() {
+    const { month, year } = this.getCurrentMonth()
+    const getDaysInMonth = new Date(year, month + 1, 0).getDate()
+    const days = []
+    for (let day = 1; day <= getDaysInMonth; day++) {
+      days.push(new Date(year, month, day))
+    }
+    return days
     
   }
 
@@ -23,19 +30,18 @@ export class CalendarModel {
   }
 
   getToNextMonth() {
-    const month = this.#currentDate.getMonth()
+    this.#currentDate.setMonth(this.#currentDate.getMonth() + 1)
   }
 
   getToPreviousMonth() {
-    const month = this.#currentDate.getMonth()
+    this.#currentDate.setMonth(this.#currentDate.getMonth() - 1)
   }
 
-  getMonthsName(month) {
+  getMonthsName(month = this.#currentDate.getMonth()) {
     const monthNames = [
       'January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'
     ]
     return monthNames[month]
   }
-
 }

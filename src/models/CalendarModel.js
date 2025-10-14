@@ -1,23 +1,41 @@
+import { getColorForDate } from '../node_modules/visual-schedule/src/weekdayColors.js'
+
 export class CalendarModel {
   #currentDate
 
   constructor() {
-    this.todaysDate = new Date()
-    this.currentDate = this.todaysDate.getDate()
+    this.#currentDate = new Date()
   }
 
   getCurrentMonth() {
-    return { month: this.todaysDate.getMonth(), year: this.todaysDate.getFullYear() }
+    return { 
+      month: this.#currentDate.getMonth(), 
+      year: this.#currentDate.getFullYear() 
+    }
   }
 
   getDaysInMonth() {
-    const { month, year } = this.getCurrentMonth()
-    return new Date(year, month + 1, 0).getDate()
+    
   }
 
   getColorForDay(date) {
-    import { getColorForDate } from "visual-schedule"
     return getColorForDate(date)
+  }
+
+  getToNextMonth() {
+    const month = this.#currentDate.getMonth()
+  }
+
+  getToPreviousMonth() {
+    const month = this.#currentDate.getMonth()
+  }
+
+  getMonthsName(month) {
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ]
+    return monthNames[month]
   }
 
 }

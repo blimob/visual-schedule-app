@@ -59,13 +59,14 @@
 .month-nav h2 {
   text-align: center;
   margin: 0;
+  font-size: 1.8rem;
 }
 
 .nav-btn {
   padding: 10px 20px;
   font-size: 1rem;
-  background: #000000;
-  color: white;
+  background: #e0e0e0;
+  color: rgb(1, 0, 0);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -73,5 +74,5 @@
 }
 
 .nav-btn:hover {
-  background: #858388;
+  background: #ccc7d0;
 }

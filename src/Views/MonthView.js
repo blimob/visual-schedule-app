@@ -7,16 +7,8 @@ export class MonthView {
 
   render(monthData) {
     this.#container.innerHTML = ''
-    this.#renderHeader(monthData)
     this.#renderWeekdayHeaders()  // ← Lägg tillbaka!
     this.#renderDays(monthData)
-  }
-
-  #renderHeader(monthData) {
-    const header = document.createElement('h2')
-    header.className = 'month-title'
-    header.textContent = `${monthData.month} ${monthData.year}`
-    this.#container.appendChild(header)
   }
 
   #renderWeekdayHeaders() {

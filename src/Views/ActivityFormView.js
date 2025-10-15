@@ -11,17 +11,16 @@ export class ActivityFormView {
 
   show(date) {
     this.#form.dataset.date = date.toISOString()
+    
     this.#modal.classList.remove('hidden')
   }
 
   hide() {
     this.#modal.classList.add('hidden')
     this.#form.reset()
-    
+
     const emojiDisplay = document.getElementById('selected-emoji-display')
-    if (emojiDisplay) {
-      emojiDisplay.textContent = ''
-    }
+    emojiDisplay.textContent = ''
   }
 
   onSubmit(callback) {
@@ -34,15 +33,11 @@ export class ActivityFormView {
     const iconInput = document.getElementById('activity-icon')
     const emojiDisplay = document.getElementById('selected-emoji-display')
     
-    if (emojiPicker) {
-      emojiPicker.addEventListener('emoji-click', (event) => {
-        const emoji = event.detail.unicode
-        iconInput.value = emoji
-        if (emojiDisplay) {
-          emojiDisplay.textContent = emoji
-        }
-      })
-    }
+    emojiPicker.addEventListener('emoji-click', (event) => {
+      const emoji = event.detail.unicode
+      iconInput.value = emoji
+      emojiDisplay.textContent = emoji
+    })
     
     // Submit form
     this.#form.addEventListener('submit', (e) => {
@@ -65,19 +60,15 @@ export class ActivityFormView {
     
     // Cancel button
     const cancelBtn = this.#modal.querySelector('.btn-cancel')
-    if (cancelBtn) {
-      cancelBtn.addEventListener('click', () => {
-        this.hide()
-      })
-    }
+    cancelBtn.addEventListener('click', () => {
+      this.hide()
+    })
     
     // Close button (X)
     const closeBtn = this.#modal.querySelector('.close-btn')
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        this.hide()
-      })
-    }
+    closeBtn.addEventListener('click', () => {
+      this.hide()
+    })
     
     // Click outside modal = close
     this.#modal.addEventListener('click', (e) => {

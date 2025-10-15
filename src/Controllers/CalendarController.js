@@ -1,8 +1,10 @@
+import { ActivityController } from './ActivityController.js'
+
 export class CalendarController {
   #scheduleManager
   #calendarModel
   #monthView
-  #activityController  // ← Delegerar till denna
+  #activityController
 
   constructor(scheduleManager, calendarModel, monthView) {
     this.#scheduleManager = scheduleManager
@@ -16,8 +18,42 @@ export class CalendarController {
     this.showMonthView()
   }
 
+  showMonthView() {
+    const { month, year } = this.#calendarModel.getCurrentMonth()
+    const monthName = this.#calendarModel.getMonthName()
+    const days = this.#calendarModel.getDaysInMonth()
+    
+    // Uppdatera titel
+    const titleElement = document.getElementById('current-month-title')
+    if (titleElement) {
+      titleElement.textContent = `${monthName} ${year}`
+    }
+    
+    // Bygg data för varje dag
+    const daysData = days.map(date => ({
+      date: date,
+      color: this.#calendarModel.getColorForDay(date),
+      activities: this.#scheduleManager.getActivitiesForDate(date)
+    }))
+    
+    // Skapa monthData
+    const monthData = {
+      month: monthName,
+      year: year,
+      firstDayOfWeek: this.#getFirstDayOfWeekMonday(days[0]),
+      days: daysData
+    }
+    
+    // Rendera
+    this.#monthView.render(monthData)
+  }
+
+  #getFirstDayOfWeekMonday(date) {
+    let day = date.getDay()
+    return day === 0 ? 6 : day - 1
+  }
+
   #setupEventListeners() {
-    // Bara navigering
     const nextBtn = document.getElementById('next-month')
     const prevBtn = document.getElementById('prev-month')
     
@@ -37,12 +73,8 @@ export class CalendarController {
     })
     
     calendarContainer.addEventListener('deleteactivity', (e) => {
-      this.#activityController.handleDelete(e.detail.activity, e.detail.date)
+      this.#activityController.handleDelete(e.detail.activity)
     })
-  }
-
-  showMonthView() {
-    // Samma som tidigare
   }
 
   handleNextMonth() {
@@ -55,7 +87,6 @@ export class CalendarController {
     this.showMonthView()
   }
 
-  // Public method för ActivityController att anropa
   refreshView() {
     this.showMonthView()
   }

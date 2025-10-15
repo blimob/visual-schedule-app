@@ -1,3 +1,5 @@
+import { ActivityFormView } from '../Views/ActivityFormView.js'
+
 export class ActivityController {
   #scheduleManager
   #calendarController
@@ -12,22 +14,26 @@ export class ActivityController {
 
   #setupFormListeners() {
     this.#activityFormView.onSubmit((formData) => {
-      this.#scheduleManager.addActivityToDate(
-        formData.date,
-        formData.name,
-        formData.startTime,
-        formData.endTime,
-        formData.icon
-      )
-      this.#calendarController.refreshView()
+      this.#handleAddActivity(formData)
     })
+  }
+
+  #handleAddActivity(formData) {
+    this.#scheduleManager.addActivityToDate(
+      formData.date,
+      formData.name,
+      formData.startTime,
+      formData.endTime,
+      formData.icon
+    )
+    this.#calendarController.refreshView()
   }
 
   handleDayClick(date) {
     this.#activityFormView.show(date)
   }
 
-  handleDelete(activity, date) {
+  handleDelete(activity) {
     const confirmed = confirm(`Delete activity "${activity.name}"?`)
     
     if (confirmed) {

@@ -28,7 +28,6 @@ export class ActivityFormView {
   }
 
   #setupEventListeners() {
-    // Emoji picker event
     const emojiPicker = this.#modal.querySelector('emoji-picker')
     const iconInput = document.getElementById('activity-icon')
     const emojiDisplay = document.getElementById('selected-emoji-display')
@@ -39,7 +38,6 @@ export class ActivityFormView {
       emojiDisplay.textContent = emoji
     })
     
-    // Submit form
     this.#form.addEventListener('submit', (e) => {
       e.preventDefault()
       
@@ -58,19 +56,16 @@ export class ActivityFormView {
       this.hide()
     })
     
-    // Cancel button
     const cancelBtn = this.#modal.querySelector('.btn-cancel')
     cancelBtn.addEventListener('click', () => {
       this.hide()
     })
     
-    // Close button (X)
     const closeBtn = this.#modal.querySelector('.close-btn')
     closeBtn.addEventListener('click', () => {
       this.hide()
     })
     
-    // Click outside modal = close
     this.#modal.addEventListener('click', (e) => {
       if (e.target === this.#modal) {
         this.hide()

@@ -13,7 +13,6 @@ export class ScheduleManager {
   addActivityToDate(date, name, startTime, endTime, icon) {
     const activity = this.newActivity(name, startTime, endTime, icon)
     
-    // Spara per datum
     const dateKey = this.#getDateKey(date)
     
     if (!this.#activitiesByDate.has(dateKey)) {

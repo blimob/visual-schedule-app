@@ -23,20 +23,17 @@ export class CalendarController {
     const monthName = this.#calendarModel.getMonthName()
     const days = this.#calendarModel.getDaysInMonth()
     
-    // Uppdatera titel
     const titleElement = document.getElementById('current-month-title')
     if (titleElement) {
       titleElement.textContent = `${monthName} ${year}`
     }
     
-    // Bygg data för varje dag
     const daysData = days.map(date => ({
       date: date,
       color: this.#calendarModel.getColorForDay(date),
       activities: this.#scheduleManager.getActivitiesForDate(date)
     }))
     
-    // Skapa monthData
     const monthData = {
       month: monthName,
       year: year,
@@ -65,7 +62,6 @@ export class CalendarController {
       prevBtn.addEventListener('click', () => this.handlePreviousMonth())
     }
     
-    // Delegera aktivitets-events
     const calendarContainer = document.getElementById('calendar-container')
     
     calendarContainer.addEventListener('dayclick', (e) => {

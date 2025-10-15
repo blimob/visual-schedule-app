@@ -54,7 +54,6 @@ export class MonthView {
       dateElem.textContent = day.date.getDate()
       dayCell.appendChild(dateElem)
       
-      // Aktiviteter
       if (day.activities && day.activities.length > 0) {
         const activitiesList = document.createElement('ul')
         activitiesList.className = 'activities-list'
@@ -68,14 +67,13 @@ export class MonthView {
           activityText.textContent = `${icon} ${activity.name}`
           activityItem.appendChild(activityText)
           
-          // Delete-knapp
           const deleteBtn = document.createElement('button')
           deleteBtn.className = 'delete-activity-btn'
           deleteBtn.textContent = '×'
           deleteBtn.title = 'Delete activity'
           
           deleteBtn.addEventListener('click', (e) => {
-            e.stopPropagation() // Förhindra att dag-click triggas
+            e.stopPropagation()
             this.#onDeleteActivity(activity, day.date)
           })
           
@@ -93,7 +91,6 @@ export class MonthView {
   }
 
   #onDeleteActivity(activity, date) {
-    // Trigga en custom event som Controller kan lyssna på
     const event = new CustomEvent('deleteactivity', { 
       detail: { activity, date },
       bubbles: true

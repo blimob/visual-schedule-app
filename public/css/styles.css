@@ -1,3 +1,4 @@
+/* Weekdays row */
 .weekdays-row {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -8,9 +9,10 @@
 .weekday-header {
   font-weight: bold;
   text-align: center;
-  padding: 10px;
+  padding: 10px 5px;
   background: #e0e0e0;
   border-radius: 5px;
+  font-size: 0.95rem;
 }
 
 .days-grid {
@@ -22,30 +24,80 @@
 .day-cell {
   border: 2px solid #333;
   border-radius: 8px;
-  padding: 10px;
-  min-height: 100px;
+  padding: 12px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.day-cell:hover:not(.empty) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .day-cell.empty {
   border: none;
   background: transparent;
+  cursor: default;
 }
 
 .date {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  line-height: 1;
 }
 
 .activities-list {
   list-style: none;
   padding: 0;
-  margin: 5px 0 0 0;
-  font-size: 0.9rem;
+  margin: 0;
+  font-size: 0.95rem;
+  flex-grow: 1;
 }
 
 .activity-item {
-  margin: 3px 0;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.activity-item span {
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.delete-activity-btn {
+  background: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.delete-activity-btn:hover {
+  background: #cc0000;
+  transform: scale(1.15);
 }
 
 .month-nav {
@@ -66,7 +118,7 @@
   padding: 10px 20px;
   font-size: 1rem;
   background: #e0e0e0;
-  color: rgb(1, 0, 0);
+  color: rgb(1, 1, 1);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -74,10 +126,10 @@
 }
 
 .nav-btn:hover {
-  background: #ccc7d0;
+  background: #bab3c2;
 }
 
-/* MODAL CSS - NYTT! */
+/* MODAL */
 .modal {
   display: none;
   position: fixed;
@@ -132,14 +184,16 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  font-size: 1rem;
 }
 
 .form-group input {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .form-actions {
@@ -151,11 +205,12 @@
 .btn-save,
 .btn-cancel {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .btn-save {
@@ -176,7 +231,7 @@
   background: #da190b;
 }
 
-/* Emoji Picker styling */
+/* Emoji Picker */
 emoji-picker {
   width: 100%;
   height: 300px;
@@ -185,41 +240,88 @@ emoji-picker {
 }
 
 #selected-emoji-display {
-  padding: 10px;
+  padding: 15px;
   background: #f9f9f9;
   border-radius: 8px;
-  min-height: 60px;
+  min-height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 3rem;
 }
 
-.activity-item {
-  margin: 3px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 5px;
+/* RESPONSIVE - MOBIL */
+@media (max-width: 768px) {
+  .day-cell {
+    min-height: 90px;
+    padding: 8px;
+  }
+  
+  .date {
+    font-size: 1.1rem;
+  }
+  
+  .activity-item {
+    font-size: 0.8rem;
+  }
+  
+  .activity-item span {
+    font-size: 0.8rem;
+  }
+  
+  .weekday-header {
+    font-size: 0.8rem;
+    padding: 8px 3px;
+  }
+  
+  .month-nav h2 {
+    font-size: 1.4rem;
+  }
+  
+  .nav-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
 }
 
-.delete-activity-btn {
-  background: #ff4444;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 1.2rem;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-}
-
-.delete-activity-btn:hover {
-  background: #cc0000;
-  transform: scale(1.1);
+@media (max-width: 480px) {
+  .day-cell {
+    min-height: 70px;
+    padding: 5px;
+  }
+  
+  .date {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  
+  .activity-item {
+    font-size: 0.7rem;
+    margin: 3px 0;
+    padding: 2px;
+  }
+  
+  .activity-item span {
+    font-size: 0.7rem;
+  }
+  
+  .delete-activity-btn {
+    width: 18px;
+    height: 18px;
+    font-size: 1rem;
+  }
+  
+  .weekday-header {
+    font-size: 0.7rem;
+    padding: 5px 2px;
+  }
+  
+  .month-nav h2 {
+    font-size: 1.2rem;
+  }
+  
+  .nav-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
 }

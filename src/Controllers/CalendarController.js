@@ -1,17 +1,36 @@
+import { ActivityFormView } from '../Views/ActivityFormView.js'
+
 export class CalendarController {
   #scheduleManager
   #calendarModel
   #monthView
+  #activityFormView
 
   constructor(scheduleManager, calendarModel, monthView) {
     this.#scheduleManager = scheduleManager
     this.#calendarModel = calendarModel
     this.#monthView = monthView
+    this.#activityFormView = new ActivityFormView()
   }
 
   initialize() {
     this.#setupEventListeners()
+    this.#setupActivityForm()
     this.showMonthView()
+  }
+
+  #setupActivityForm() {
+    this.#activityFormView.onSubmit((formData) => {
+      this.#scheduleManager.addActivityToDate(
+        formData.date,
+        formData.name,
+        formData.startTime,
+        formData.endTime,
+        formData.icon
+      )
+      this.showMonthView() 
+      
+    })
   }
 
   showMonthView() {
@@ -60,8 +79,12 @@ export class CalendarController {
     if (prevBtn) {
       prevBtn.addEventListener('click', () => this.handlePreviousMonth())
     }
+    
+    const calendarContainer = document.getElementById('calendar-container')
+    calendarContainer.addEventListener('dayclick', (e) => {
+      this.#activityFormView.show(e.detail.date)
+    })
   }
-
   handleNextMonth() {
     this.#calendarModel.goToNextMonth()
     this.showMonthView()

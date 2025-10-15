@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/blimob/visual-schedule-app#readme",
   "dependencies": {
+    "emoji-picker-element": "^1.27.0",
     "portfinder": "^1.0.38",
     "visual-schedule": "github:blimob/Visual-Schedule"
   },

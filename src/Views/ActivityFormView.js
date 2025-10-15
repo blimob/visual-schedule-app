@@ -1,22 +1,22 @@
 export class ActivityFormView {
-  #model
+  #modal
   #form
   #onSubmitCallback
 
   constructor() {
-    this.#model = document.getElementById('activity-model')
+    this.#modal = document.getElementById('activity-modal')
     this.#form = document.getElementById('activity-form')
     this.#setupEventListeners()
   }
 
   show(date) {
     this.#form.dataset.date = date.toISOString()
-
-    this.#model.classList.remove('hidden')
+    
+    this.#modal.classList.remove('hidden')
   }
 
   hide() {
-    this.#model.classList.add('hidden')
+    this.#modal.classList.add('hidden')
     this.#form.reset()
   }
 
@@ -25,31 +25,39 @@ export class ActivityFormView {
   }
 
   #setupEventListeners() {
+
     this.#form.addEventListener('submit', (e) => {
       e.preventDefault()
-
+      
       const formData = {
         date: new Date(this.#form.dataset.date),
         name: document.getElementById('activity-name').value,
-        startTime: document.getElementById('activity-start-time').value,
-        endTime: document.getElementById('activity-end-time').value,
-        icon: document.getElementById('activity-icon').value,
+        startTime: document.getElementById('activity-start').value,
+        endTime: document.getElementById('activity-end').value,
+        icon: document.getElementById('activity-icon').value
       }
+      
       if (this.#onSubmitCallback) {
         this.#onSubmitCallback(formData)
       }
-
-      const cancelbutton = this.#model.querySelector('.cancel-button')
-      cancelbutton.addEventListener('click', () => this.hide())
+      
+      this.hide()
     })
 
-    const closebutton = this.#model.querySelector('.close-button')
-    closebutton.addEventListener('click', () => this.hide())
-  }
-
-  this.#model.addEventListener('click', (e) => {
-    if (e.target === this.#model) {
+    const cancelButton = this.#modal.querySelector('.btn-cancel')
+    cancelButton.addEventListener('click', () => {
       this.hide()
-    }
-  })
+    })
+
+    const closeBotton = this.#modal.querySelector('.close-btn')
+    closeBotton.addEventListener('click', () => {
+      this.hide()
+    })
+
+    this.#modal.addEventListener('click', (e) => {
+      if (e.target === this.#modal) {
+        this.hide()
+      }
+    })
+  }
 }

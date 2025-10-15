@@ -30,18 +30,21 @@ export class MonthView {
     const daysGrid = document.createElement('div')
     daysGrid.className = 'days-grid'
     
-    // Tomma celler före första dagen
     for (let i = 0; i < monthData.firstDayOfWeek; i++) {
       const emptyCell = document.createElement('div')
       emptyCell.className = 'day-cell empty'
       daysGrid.appendChild(emptyCell)
     }
     
-    // Alla dagar
     monthData.days.forEach(day => {
       const dayCell = document.createElement('div')
       dayCell.className = 'day-cell'
       dayCell.style.backgroundColor = day.color || '#fff'
+      dayCell.style.cursor = 'pointer'
+
+      dayCell.addEventListener('click', () => {
+        this.#onDayClick(day.date)
+      })
       
       const dateElem = document.createElement('div')
       dateElem.className = 'date'
@@ -67,5 +70,10 @@ export class MonthView {
     })
     
     this.#container.appendChild(daysGrid)
+  }
+
+  #onDayClick(date) {
+    const event = new CustomEvent('dayclick', { detail: { date } })
+    this.#container.dispatchEvent(event)
   }
 }

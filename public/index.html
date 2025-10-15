@@ -23,12 +23,36 @@
 
     <div id="calendar-container"></div>
 
-    <!-- Activity form for future use -->
-    <div id="activity-form-container" class="modal hidden">
+    <div id="activity-modal" class="modal hidden">
       <div class="modal-content">
+        <span class="close-btn">&times;</span>
         <h3>Add Activity</h3>
-        <form id="activity-form-element">
-          <!-- Form fields will go here -->
+        
+        <form id="activity-form">
+          <div class="form-group">
+            <label for="activity-name">Activity Name:</label>
+            <input type="text" id="activity-name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="activity-start">Start Time:</label>
+            <input type="time" id="activity-start" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="activity-end">End Time:</label>
+            <input type="time" id="activity-end" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="activity-icon">Icon (emoji):</label>
+            <input type="text" id="activity-icon" placeholder="🏫" maxlength="2">
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn-save">Save</button>
+            <button type="button" class="btn-cancel">Cancel</button>
+          </div>
         </form>
       </div>
     </div>

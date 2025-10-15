@@ -1,0 +1,37 @@
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.weekday-header {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  background: #f0f0f0;
+}
+
+.day-cell {
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 100px;
+}
+
+.date-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.activities-list {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  font-size: 0.9rem;
+}
+
+.activity-item {
+  margin: 3px 0;
+}

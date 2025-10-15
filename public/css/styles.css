@@ -47,3 +47,31 @@
 .activity-item {
   margin: 3px 0;
 }
+
+.month-nav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.month-nav h2 {
+  text-align: center;
+  margin: 0;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: #000000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.nav-btn:hover {
+  background: #858388;
+}

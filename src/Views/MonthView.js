@@ -20,7 +20,7 @@ export class MonthView {
   }
 
   #renderWeekdayHeaders() {
-    const weekdays = ['M', 'Ti', 'O', 'To', 'F', 'L', 'S']
+    const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     const weekdaysRow = document.createElement('div')
     weekdaysRow.className = 'weekdays-row'
     

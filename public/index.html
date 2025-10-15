@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visual schedule</title>
+  <title>Visual Schedule</title>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
   <header>
-    <h1>📅 Visual schedule for children</h1>
+    <h1>📅 Visual Schedule for Children</h1>
     <p>Create colorful schedules with activities</p>
   </header>
 
   <main class="app-main">
 
-    <nav class="month-navigation">
+    <nav class="month-nav">
       <button id="prev-month" class="nav-btn">← Previous</button>
       <h2 id="current-month-title"></h2>
       <button id="next-month" class="nav-btn">Next →</button>
     </nav>
 
-    <div id="calendar-container"
-    </div>
+    <div id="calendar-container"></div>
 
+    <!-- Activity form for future use -->
     <div id="activity-form-container" class="modal hidden">
       <div class="modal-content">
-        <h3>Add activity</h3>
+        <h3>Add Activity</h3>
         <form id="activity-form-element">
-
+          <!-- Form fields will go here -->
         </form>
       </div>
     </div>
+
   </main>
 
   <script type="module" src="/src/index.js"></script>

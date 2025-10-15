@@ -18,7 +18,7 @@ export class MonthView {
     daysGrid.className = 'days-grid'
 
     // Weekday headers
-    const dayNames = ['S', 'M', 'Ti', 'O', 'To', 'F', 'L']
+    const dayNames = ['M', 'Ti', 'O', 'To', 'F', 'L', 'S']
     dayNames.forEach(dayName => {
       const dayHeader = document.createElement('div')
       dayHeader.className = 'weekday-header'

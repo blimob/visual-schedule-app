@@ -3,6 +3,9 @@ import { Child } from '/node_modules/visual-schedule/src/Child.js'
 import { DaySchedule } from '/node_modules/visual-schedule/src/DaySchedule.js'
 import { getColorForDate } from '/node_modules/visual-schedule/src/weekdayColors.js'
 import { CalendarModel } from './models/CalendarModel.js'
+import { ScheduleManager } from './models/ScheduleManager.js'
+import { CalendarController } from './controllers/CalendarController.js'
+import { MonthView } from './Views/MonthView.js'
 
 // Create a child
 const emma = new Child('Emma', 6)
@@ -39,3 +42,22 @@ const firstDay = calendarModel.getDaysInMonth()[0]
 console.log('📅 Första dagen är:', firstDay.toDateString())
 console.log('📅 Veckodag nummer:', firstDay.getDay())  // 0=Sön, 1=Mån, 2=Tis, 3=Ons...
 console.log('🎨 Färg:', calendarModel.getColorForDay(firstDay))
+
+// Skapa Models
+const scheduleManager = new ScheduleManager()
+
+// Skapa Views
+const calendarContainer = document.getElementById('calendar-container')
+const monthView = new MonthView(calendarContainer)
+
+// Skapa Controller
+const calendarController = new CalendarController(
+  scheduleManager,
+  calendarModel,
+  monthView
+)
+
+// Starta appen!
+calendarController.initialize()
+
+console.log('✅ App initialized!')

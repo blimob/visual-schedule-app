@@ -11,13 +11,17 @@ export class ActivityFormView {
 
   show(date) {
     this.#form.dataset.date = date.toISOString()
-    
     this.#modal.classList.remove('hidden')
   }
 
   hide() {
     this.#modal.classList.add('hidden')
     this.#form.reset()
+    
+    const emojiDisplay = document.getElementById('selected-emoji-display')
+    if (emojiDisplay) {
+      emojiDisplay.textContent = ''
+    }
   }
 
   onSubmit(callback) {
@@ -25,7 +29,22 @@ export class ActivityFormView {
   }
 
   #setupEventListeners() {
-
+    // Emoji picker event
+    const emojiPicker = this.#modal.querySelector('emoji-picker')
+    const iconInput = document.getElementById('activity-icon')
+    const emojiDisplay = document.getElementById('selected-emoji-display')
+    
+    if (emojiPicker) {
+      emojiPicker.addEventListener('emoji-click', (event) => {
+        const emoji = event.detail.unicode
+        iconInput.value = emoji
+        if (emojiDisplay) {
+          emojiDisplay.textContent = emoji
+        }
+      })
+    }
+    
+    // Submit form
     this.#form.addEventListener('submit', (e) => {
       e.preventDefault()
       
@@ -43,17 +62,24 @@ export class ActivityFormView {
       
       this.hide()
     })
-
-    const cancelButton = this.#modal.querySelector('.btn-cancel')
-    cancelButton.addEventListener('click', () => {
-      this.hide()
-    })
-
-    const closeBotton = this.#modal.querySelector('.close-btn')
-    closeBotton.addEventListener('click', () => {
-      this.hide()
-    })
-
+    
+    // Cancel button
+    const cancelBtn = this.#modal.querySelector('.btn-cancel')
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', () => {
+        this.hide()
+      })
+    }
+    
+    // Close button (X)
+    const closeBtn = this.#modal.querySelector('.close-btn')
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        this.hide()
+      })
+    }
+    
+    // Click outside modal = close
     this.#modal.addEventListener('click', (e) => {
       if (e.target === this.#modal) {
         this.hide()

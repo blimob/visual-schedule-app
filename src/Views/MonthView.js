@@ -7,7 +7,7 @@ export class MonthView {
 
   render(monthData) {
     this.#container.innerHTML = ''
-    this.#renderWeekdayHeaders()  // ← Lägg tillbaka!
+    this.#renderWeekdayHeaders()
     this.#renderDays(monthData)
   }
 
@@ -41,9 +41,12 @@ export class MonthView {
       dayCell.className = 'day-cell'
       dayCell.style.backgroundColor = day.color || '#fff'
       dayCell.style.cursor = 'pointer'
-
-      dayCell.addEventListener('click', () => {
-        this.#onDayClick(day.date)
+  
+      dayCell.addEventListener('click', (e) => {
+        // Förhindra att modal öppnas om man klickar på delete-knapp
+        if (!e.target.classList.contains('delete-activity-btn')) {
+          this.#onDayClick(day.date)
+        }
       })
       
       const dateElem = document.createElement('div')
@@ -58,8 +61,25 @@ export class MonthView {
         
         day.activities.forEach(activity => {
           const activityItem = document.createElement('li')
+          activityItem.className = 'activity-item'
+          
           const icon = activity.visual?.icon || ''
-          activityItem.textContent = `${icon} ${activity.name}`
+          const activityText = document.createElement('span')
+          activityText.textContent = `${icon} ${activity.name}`
+          activityItem.appendChild(activityText)
+          
+          // Delete-knapp
+          const deleteBtn = document.createElement('button')
+          deleteBtn.className = 'delete-activity-btn'
+          deleteBtn.textContent = '×'
+          deleteBtn.title = 'Delete activity'
+          
+          deleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation() // Förhindra att dag-click triggas
+            this.#onDeleteActivity(activity, day.date)
+          })
+          
+          activityItem.appendChild(deleteBtn)
           activitiesList.appendChild(activityItem)
         })
         
@@ -72,8 +92,20 @@ export class MonthView {
     this.#container.appendChild(daysGrid)
   }
 
+  #onDeleteActivity(activity, date) {
+    // Trigga en custom event som Controller kan lyssna på
+    const event = new CustomEvent('deleteactivity', { 
+      detail: { activity, date },
+      bubbles: true
+    })
+    this.#container.dispatchEvent(event)
+  }
+
   #onDayClick(date) {
-    const event = new CustomEvent('dayclick', { detail: { date } })
+    const event = new CustomEvent('dayclick', { 
+      detail: { date },
+      bubbles: true
+    })
     this.#container.dispatchEvent(event)
   }
 }

@@ -1,74 +1,23 @@
-import { ActivityFormView } from '../Views/ActivityFormView.js'
-
 export class CalendarController {
   #scheduleManager
   #calendarModel
   #monthView
-  #activityFormView
+  #activityController  // ← Delegerar till denna
 
   constructor(scheduleManager, calendarModel, monthView) {
     this.#scheduleManager = scheduleManager
     this.#calendarModel = calendarModel
     this.#monthView = monthView
-    this.#activityFormView = new ActivityFormView()
+    this.#activityController = new ActivityController(scheduleManager, this)
   }
 
   initialize() {
     this.#setupEventListeners()
-    this.#setupActivityForm()
     this.showMonthView()
   }
 
-  #setupActivityForm() {
-    this.#activityFormView.onSubmit((formData) => {
-      this.#scheduleManager.addActivityToDate(
-        formData.date,
-        formData.name,
-        formData.startTime,
-        formData.endTime,
-        formData.icon
-      )
-      this.showMonthView() 
-      
-    })
-  }
-
-  showMonthView() {
-    const { month, year } = this.#calendarModel.getCurrentMonth()
-    const monthName = this.#calendarModel.getMonthName()
-    const days = this.#calendarModel.getDaysInMonth()
-    
-    // Uppdatera titel (mellan knapparna)
-    const titleElement = document.getElementById('current-month-title')
-    if (titleElement) {
-      titleElement.textContent = `${monthName} ${year}`
-    }
-    
-    // Bygg data för varje dag
-    const daysData = days.map(date => ({
-      date: date,
-      color: this.#calendarModel.getColorForDay(date),
-      activities: this.#scheduleManager.getActivitiesForDate(date)
-    }))
-    
-    // Skapa monthData
-    const monthData = {
-      month: monthName,
-      year: year,
-      firstDayOfWeek: this.#getFirstDayOfWeekMonday(days[0]),
-      days: daysData
-    }
-    
-    // Rendera kalendern
-    this.#monthView.render(monthData)
-  }
-
-  #getFirstDayOfWeekMonday(date) {
-    let day = date.getDay()
-    return day === 0 ? 6 : day - 1
-  }
-
   #setupEventListeners() {
+    // Bara navigering
     const nextBtn = document.getElementById('next-month')
     const prevBtn = document.getElementById('prev-month')
     
@@ -80,11 +29,22 @@ export class CalendarController {
       prevBtn.addEventListener('click', () => this.handlePreviousMonth())
     }
     
+    // Delegera aktivitets-events
     const calendarContainer = document.getElementById('calendar-container')
+    
     calendarContainer.addEventListener('dayclick', (e) => {
-      this.#activityFormView.show(e.detail.date)
+      this.#activityController.handleDayClick(e.detail.date)
+    })
+    
+    calendarContainer.addEventListener('deleteactivity', (e) => {
+      this.#activityController.handleDelete(e.detail.activity, e.detail.date)
     })
   }
+
+  showMonthView() {
+    // Samma som tidigare
+  }
+
   handleNextMonth() {
     this.#calendarModel.goToNextMonth()
     this.showMonthView()
@@ -92,6 +52,11 @@ export class CalendarController {
 
   handlePreviousMonth() {
     this.#calendarModel.goToPreviousMonth()
+    this.showMonthView()
+  }
+
+  // Public method för ActivityController att anropa
+  refreshView() {
     this.showMonthView()
   }
 }

@@ -36,14 +36,33 @@
             <input type="text" id="activity-name" required>
           </div>
           
-          <div class="form-group">
-            <label for="activity-start">Start Time:</label>
-            <input type="text" id="activity-start" placeholder="HH:MM (09:00)" pattern="[0-9]{2}:[0-9]{2}" required>
+          <!-- ALL DAY CHECKBOX -->
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="activity-allday">
+              All day event
+            </label>
           </div>
           
-          <div class="form-group">
-            <label for="activity-end">End Time:</label>
-            <input type="text" id="activity-end" placeholder="HH:MM (10:30)" pattern="[0-9]{2}:[0-9]{2}" required>
+          <!-- TIME FIELDS (döljs om all day) -->
+          <div id="time-fields">
+            <div class="form-group">
+              <label for="activity-start">Start Time:</label>
+              <input type="time" id="activity-start">
+            </div>
+            
+            <div class="form-group">
+              <label for="activity-end">End Time:</label>
+              <input type="time" id="activity-end">
+            </div>
+          </div>
+          
+          <!-- REPEAT WEEKLY CHECKBOX -->
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="activity-repeat">
+              Repeat weekly (every <span id="selected-weekday">Monday</span>)
+            </label>
           </div>
           
           <div class="form-group">

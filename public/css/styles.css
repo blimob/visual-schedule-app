@@ -325,3 +325,30 @@ emoji-picker {
     font-size: 0.85rem;
   }
 }
+
+.checkbox-group {
+  margin: 15px 0;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+#selected-weekday {
+  font-weight: bold;
+  color: #667eea;
+}
+
+#time-fields.hidden {
+  display: none;
+}

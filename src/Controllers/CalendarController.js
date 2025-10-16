@@ -41,7 +41,6 @@ export class CalendarController {
       days: daysData
     }
     
-    // Rendera
     this.#monthView.render(monthData)
   }
 

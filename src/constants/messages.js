@@ -1,4 +1,4 @@
-export const storage_messages = {
+export const STORAGE_MESSAGES = {
   SAVE_SUCCESS: 'Data saved to localStorage',
   SAVE_FAILED: 'Failed to save to localStorage',
   LOAD_SUCCESS: 'Data loaded from localStorage',

@@ -1,7 +1,12 @@
+import { STORAGE_MESSAGES, ERROR_MESSAGES } from '../constants/messages.js'
+
 export class StorageService {
   #storageKey
 
   constructor(storageKey) {
+    if (!storageKey) {
+      throw new Error(ERROR_MESSAGES.INVALID_STORAGE_KEY)
+    }
     this.#storageKey = storageKey
   }
 
@@ -9,7 +14,7 @@ export class StorageService {
     try {
       const jsonData = JSON.stringify(data)
       localStorage.setItem(this.#storageKey, jsonData)
-      
+
     }
   }
 

@@ -47,4 +47,14 @@
 | TC-13 | Save activity | 1. Fill name, times, emoji< br> 2. click "Save" |  Activity appears in selected day | ✅ |
 | TC-14 | Save full day activity | 1. Fill name, 2. click "All day event" 3. "Save" | Activity appears in selected day | ✅ |
 | TC-15 | Repeat weekly activity | 1. Fill name, time 2. click "Repeat weekly" | Activity appears in selected days | ✅ |
-| 
+| TC-16 | Modal closes | 1. Save activity | Modal closes automatically | ✅ |
+| TC- 17 | Cancel | 1. Open form< br> 2. Click "Cancel" | Modal closes without saving | ✅ |
+| TC-18 | Closes with X | 1. Open form< br> 2. Click "x" | Modal closes without saving | ✅ |
+| TC-19 | Multiple activities same day | 1. Add 2+ activitites on same day | All activities display in the day | ✅ |
+
+---
+
+### 4. Delete activity
+
+| Test ID | Test case | Steps | Expected result | Status |
+|---------|-----------|-------|-----------------|--------|

@@ -79,3 +79,25 @@
 
 | Test ID | Test case | Steps | Expected result | Status |
 |---------|-----------|-------|-----------------|--------|
+| TC-27 | Desktop | 1. Open in large window | Calendar looks good, all readable | ✅ |
+| TC-28 | Tablet | 1. Resize window | Calendar adapts, text readable | ✅ |
+| TC-29 | No emoji selected | 1. Add activity without emoji | Activity saves anyway | ✅ |
+
+---
+
+### 7. Edge cases
+
+| Test ID | Test case | Steps | Expected result | Status |
+|---------|-----------|-------|-----------------|--------|
+| TC-30 | Empty activity | 1. Open form 2. Save without filling | Form validates, Shows error message | ✅ |
+| TC-31 | Long activity name | 1. Type 50+ characters | Text wraps/ellipsis, stays within cell | ✅ |
+| TC-32 | No emoji selected | 1. Add activity without emoji | Activity saves anyway (without icon) | ✅ |
+
+---
+
+## Summary
+
+* **Total test cases:** 32
+* **Passed (✅):** 32
+* **Failed (❌):** 0
+* **Not tested (⬜):** 0

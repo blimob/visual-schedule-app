@@ -41,3 +41,10 @@
 
 | Test ID | Test case | Steps | Expected result | Status |
 |---------|-----------|-------|-----------------|--------|
+| TC-10 | Open form | 1. Click on a day | Model open with empty form | ✅ |
+| TC-11 | Emoji picker visible | 1. Open form | Emoji picker is visible and clickable | ✅ |
+| TC-12 | Select emoji | 1. Click on emoji | Selected emoji appears in display field | ✅ |
+| TC-13 | Save activity | 1. Fill name, times, emoji< br> 2. click "Save" |  Activity appears in selected day | ✅ |
+| TC-14 | Save full day activity | 1. Fill name, 2. click "All day event" 3. "Save" | Activity appears in selected day | ✅ |
+| TC-15 | Repeat weekly activity | 1. Fill name, time 2. click "Repeat weekly" | Activity appears in selected days | ✅ |
+| 

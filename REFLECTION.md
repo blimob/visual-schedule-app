@@ -59,3 +59,5 @@ refreshView() {
 ---
 
 ## Chapter 4: Comments
+
+I have followed the principle that "code should be self-documenting" by using meaningful names and small functions that eliminate the need for most comments. Method names like `#createDeleteButton()`, `#addActivities()`and `getActivitiesForDate()`are descriptive enough that they explain their purpose without additionaal documentation.

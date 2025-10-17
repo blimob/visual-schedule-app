@@ -14,16 +14,30 @@ export class ActivityController {
 
   #setupFormListeners() {
     this.#activityFormView.onSubmit((formData) => {
-      this.#handleAddActivity(formData)
+      if (this.#validateFormData(formData)) {
+        this.#handleAddActivity(formData)
+      }
     })
+  }
+  
+  #validateFormData(formData) {
+    if (!formData.allDay && (!formData.startTime || !formData.endTime)) {
+      this.#activityFormView.showError('Please fill in start and end time, or check "All day event"')
+      return false
+    }
+    return true
   }
 
   #handleAddActivity(formData) {
     if (formData.repeat) {
-      // Lägg till på alla dagar med samma veckodag i aktuell månad
-      this.#addRepeatingActivity(formData)
+      this.#scheduleManager.addRepeatingActivityToMonth(
+        formData.date,
+        formData.name,
+        formData.startTime,
+        formData.endTime,
+        formData.icon
+      )
     } else {
-      // Lägg bara till på vald dag
       this.#scheduleManager.addActivityToDate(
         formData.date,
         formData.name,
@@ -34,30 +48,6 @@ export class ActivityController {
     }
     
     this.#calendarController.refreshView()
-  }
-
-  #addRepeatingActivity(formData) {
-    const targetWeekday = formData.date.getDay()
-    const currentMonth = formData.date.getMonth()
-    const currentYear = formData.date.getFullYear()
-    
-    // Hitta antal dagar i månaden
-    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
-    
-    // Lägg till aktivitet på alla dagar med samma veckodag
-    for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(currentYear, currentMonth, day)
-      
-      if (date.getDay() === targetWeekday) {
-        this.#scheduleManager.addActivityToDate(
-          date,
-          formData.name,
-          formData.startTime,
-          formData.endTime,
-          formData.icon
-        )
-      }
-    }
   }
 
   handleDayClick(date) {

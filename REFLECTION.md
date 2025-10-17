@@ -14,3 +14,6 @@ This reflection examines how the author’s principles from Clean Code (Chapters
 ---
 
 ## Chapter 2: Meaningful names
+
+Throughout this development process, I have consistently followed Chapter 2's principle of meaningful names. I avoided abbreviations in my class names, choosing descriptive nouns like `ScheduleManager`, `CalendarController`, and `StorageService` that clearly reveal their intent. My method names use verbs that describe actions, such as `addActivityToDate()` and `getActivitiesForDate()`, making their purpose immediately clear. Variables like `dateKey` and `activitiesByDate` are both searchable and pronounceable, facilitating team communication and code navigation. 
+

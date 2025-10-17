@@ -58,3 +58,24 @@
 
 | Test ID | Test case | Steps | Expected result | Status |
 |---------|-----------|-------|-----------------|--------|
+| TC-20 | Delete button visible | 1. Check activity | Red "x" button visible next to activity | ✅ |
+| TC-21 | Delete activity | 1. Click "x" 2. Confirm | Activity disappears from day | ✅ |
+| TC-22 | Cancel deletion | 1. Click "x" 2. Cancel | Activity remains | ✅ |
+
+---
+
+### 5. LocalStorage / Persistence
+
+| Test ID | Test case | Steps | Expected result | Status |
+|---------|-----------|-------|-----------------|--------|
+| TC-23 | Save data | 1. Add activity 2. Check Console | "✅ Data saved" appears | ✅ |
+| TC-24 | Load data | 1. Reload page | Activities persist | ✅ |
+| TC-25 | Data after navigation | 1. Add activity 2. Change month 3. Go back | Activity persists | ✅ |
+| TC-26 | Multiple activities persist | 1. Add 3+ activities 2. Reload | All activities persists | ✅ |
+
+---
+
+### 6. Responsiveness
+
+| Test ID | Test case | Steps | Expected result | Status |
+|---------|-----------|-------|-----------------|--------|

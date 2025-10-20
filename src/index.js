@@ -1,7 +1,9 @@
-import { CalendarModel } from './src/models/CalendarModel.js'
-import { ScheduleManager } from './src/models/ScheduleManager.js'
-import { CalendarController } from './src/Controllers/CalendarController.js'
-import { MonthView } from './src/Views/MonthView.js'
+import { ScheduleManager } from '../src/models/ScheduleManager.js'
+import { CalendarModel } from '../src/models/CalendarModel.js'
+import { CalendarController } from '../src/controllers/CalendarController.js'
+import { MonthView } from '../src/Views/MonthView.js'
+
+// Allt med RELATIVA paths!
 
 console.log('🚀 Visual Schedule App Starting...')
 

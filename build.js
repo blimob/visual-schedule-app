@@ -15,13 +15,13 @@ fs.copySync(
 )
 console.log('✅ Copied src/ to public/src/')
 
-// Kopiera node_modules/visual-schedule till public/vendor/
-fs.ensureDirSync(path.join(__dirname, 'public', 'vendor'))
+// Kopiera node_modules/visual-schedule till public/lib/visual-schedule/
+fs.ensureDirSync(path.join(__dirname, 'public', 'lib'))
 fs.copySync(
   path.join(__dirname, 'node_modules', 'visual-schedule'),
-  path.join(__dirname, 'public', 'vendor', 'visual-schedule'),
+  path.join(__dirname, 'public', 'lib', 'visual-schedule'),
   { overwrite: true }
 )
-console.log('✅ Copied visual-schedule to public/vendor/')
+console.log('✅ Copied visual-schedule to public/lib/')
 
 console.log('🎉 Build complete!')

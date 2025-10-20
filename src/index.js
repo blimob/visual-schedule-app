@@ -1,7 +1,7 @@
-import { CalendarModel } from './models/CalendarModel.js'
-import { ScheduleManager } from './models/ScheduleManager.js'
-import { CalendarController } from './Controllers/CalendarController.js'
-import { MonthView } from './Views/MonthView.js'
+import { CalendarModel } from './src/models/CalendarModel.js'
+import { ScheduleManager } from './src/models/ScheduleManager.js'
+import { CalendarController } from './src/Controllers/CalendarController.js'
+import { MonthView } from './src/Views/MonthView.js'
 
 console.log('🚀 Visual Schedule App Starting...')
 

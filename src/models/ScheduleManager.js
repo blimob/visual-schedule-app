@@ -1,5 +1,5 @@
-import { Child } from '../vendor/visual-schedule/src/Child.js'
-import { Activity } from '../vendor/visual-schedule/src/Activity.js'
+import { Child } from '/node_modules/visual-schedule/src/Child.js'
+import { Activity } from '/node_modules/visual-schedule/src/Activity.js'
 import { StorageService } from '../services/StorageService.js'
 
 export class ScheduleManager {

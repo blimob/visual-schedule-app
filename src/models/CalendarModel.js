@@ -1,4 +1,4 @@
-import { getColorForDate } from '../vendor/visual-schedule/src/weekdayColors.js'
+import { getColorForDate } from '/node_modules/visual-schedule/src/weekdayColors.js'
 
 export class CalendarModel {
   #currentDate

@@ -7,7 +7,6 @@ const __dirname = path.dirname(__filename)
 
 console.log('📦 Building for deployment...')
 
-// Kopiera src/ till public/src/
 fs.copySync(
   path.join(__dirname, 'src'),
   path.join(__dirname, 'public', 'src'),
@@ -15,7 +14,6 @@ fs.copySync(
 )
 console.log('✅ Copied src/ to public/src/')
 
-// Kopiera node_modules/visual-schedule till public/lib/visual-schedule/
 fs.ensureDirSync(path.join(__dirname, 'public', 'lib'))
 fs.copySync(
   path.join(__dirname, 'node_modules', 'visual-schedule'),

@@ -113,17 +113,17 @@ npm run test:coverage
 
 This application follows the **Model-View-Controller (MVC)** pattern:
 
-- **Models** - Manage data and business logic (`CalendarModel`, `ScheduleManager`)
-- **Views** - Handle DOM rendering and user interface (`MonthView`, `ActivityFormView`)
-- **Controllers** - Coordinate between Models and Views (`CalendarController`, `ActivityController`)
-- **Services** - Provide cross-cutting concerns (`StorageService`)
+* **Models** - Manage data and business logic (`CalendarModel`, `ScheduleManager`)
+* **Views** - Handle DOM rendering and user interface (`MonthView`, `ActivityFormView`)
+* **Controllers** - Coordinate between Models and Views (`CalendarController`, `ActivityController`)
+* **Services** - Provide cross-cutting concerns (`StorageService`)
 
 ### Key Design Principles
 
-- **Single Responsibility Principle (SRP)** - Each class has one reason to change
-- **Dependency Injection** - Dependencies passed through constructors
-- **Encapsulation** - Private fields using JavaScript `#` syntax
-- **Separation of Concerns** - Clear boundaries between layers
+* **Single Responsibility Principle (SRP)** - Each class has one reason to change
+* **Dependency Injection** - Dependencies passed through constructors
+* **Encapsulation** - Private fields using JavaScript `#` syntax
+* **Separation of Concerns** - Clear boundaries between layers
 
 ## Scripts
 
@@ -151,3 +151,43 @@ Contributions are welcome! Please follow these steps:
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+## License
+
+This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
+
+## Author
+
+**Blinera Moberg**
+* Email: bm222mr@student.lnu.se
+* GitHub: [@blimob](https://github.com/blimob)
+
+## Acknowledgments
+
+* Built as part of the 1DV610 Software Quality course at Linnaeus University
+* Inspired by visual scheduling needs for children
+* Uses the [visual-schedule](https://github.com/blimob/Visual-Schedule) npm package for core scheduling logic
+
+## Documentation
+
+* [REFLECTION.md](REFLECTION.md) - Clean Code analysis and reflections
+* [TESTRAPPORT.md](TESTRAPPORT.md) - Manual testing report
+* [visual-schedule package](https://github.com/blimob/Visual-Schedule) - Core scheduling library documentation
+
+## Known Issues
+
+* None currently reported
+
+## Future Enhancements
+
+* [ ] Week view in addition to month view
+* [ ] Day view in addition to month view
+* [ ] Weekdays on the month view
+* [ ] Export/import schedule data
+* [ ] Multiple child profiles
+* [ ] Print-friendly schedule format
+* [ ] Dark mode support
+* [ ] Activity templates and categories
+* [ ] English weekdays to Swedish weekdays
+
+---

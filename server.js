@@ -18,27 +18,26 @@ const mimeTypes = {
 }
 
 const server = createServer(async (req, res) => {
-  console.log('Request:', req.url)  // Debug: se vad som requestas
+  console.log('Request:', req.url)
   
   let filePath
   
-  // Handle root
   if (req.url === '/') {
     filePath = join(__dirname, 'public', 'index.html')
   }
-  // Handle public files
+
   else if (req.url.startsWith('/css/') || req.url.startsWith('/assets/')) {
     filePath = join(__dirname, 'public', req.url)
   }
-  // Handle src files
+
   else if (req.url.startsWith('/src/')) {
     filePath = join(__dirname, req.url.substring(1))
   }
-  // Handle node_modules
+
   else if (req.url.startsWith('/node_modules/')) {
     filePath = join(__dirname, req.url.substring(1))
   }
-  // Default to public
+
   else {
     filePath = join(__dirname, 'public', req.url)
   }

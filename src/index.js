@@ -3,7 +3,7 @@ import { CalendarModel } from './models/CalendarModel.js'
 import { CalendarController } from './controllers/CalendarController.js'
 import { MonthView } from './Views/MonthView.js'
 
-console.log('🚀 Visual Schedule App Starting...')
+console.log(' Visual Schedule App Starting...')
 
 const scheduleManager = new ScheduleManager()
 const calendarModel = new CalendarModel()
@@ -19,4 +19,4 @@ const calendarController = new CalendarController(
 
 calendarController.initialize()
 
-console.log('✅ App initialized!')
+console.log('App initialized!')

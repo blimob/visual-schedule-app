@@ -60,4 +60,48 @@ refreshView() {
 
 ## Chapter 4: Comments
 
-I have followed the principle that "code should be self-documenting" by using meaningful names and small functions that eliminate the need for most comments. Method names like `#createDeleteButton()`, `#addActivities()`and `getActivitiesForDate()`are descriptive enough that they explain their purpose without additionaal documentation.
+I have followed the principle that "code should be self-documenting" by using meaningful names and small functions that eliminate the need for most comments. Method names like `#createDeleteButton()`, `#addActivities()`and `getActivitiesForDate()`are descriptive enough that they explain their purpose without additionaal documentation. Where coomments did exist att de begining they were initially in Swedish which violated consistency standards and have then been translated to English. Good comments explain why rather than what in Clean Code. My code achieves this to a certain degree through clean naming. 
+
+Example
+```javascript
+#createActivityItem(activity) {
+  const activityItem = document.createElement('li')
+  activityItem.className = 'activity-item'
+  
+  const activityText = this.#createActivityText(activity)
+  const deleteBtn = this.#createDeleteButton(activity)
+  
+  activityItem.appendChild(activityText)
+  activityItem.appendChild(deleteBtn)
+  
+  return activityItem
+}
+````
+
+---
+
+## Chapter 5: Formatting
+
+
+
+Example
+```javascript
+export class CalendarModel {
+  #currentDate
+
+  constructor() {
+    this.#currentDate = new Date()
+  }
+
+  getCurrentMonth() {
+    return { 
+      month: this.#currentDate.getMonth(), 
+      year: this.#currentDate.getFullYear() 
+    }
+  }
+
+  goToNextMonth() {
+    this.#currentDate.setMonth(this.#currentDate.getMonth() + 1)
+  }
+}
+```

@@ -7,8 +7,8 @@ export const STORAGE_MESSAGES = {
   CLEAR_SUCCESS: 'Data cleared from localStorage',
   CLEAR_FAILED: 'Failed to clear localStorage',
   CHECK_FAILED: 'Failed to check localStorage',
-  QUOTA_EXCEEDED: 'ocalStorage is full!',
-  NOT_AVAILABLE: 'ocalStorage is not available',
+  QUOTA_EXCEEDED: 'LocalStorage is full!',
+  NOT_AVAILABLE: 'LocalStorage is not available',
   CORRUPT_DATA: 'Stored data is corrupt, clearing...'
 }
 

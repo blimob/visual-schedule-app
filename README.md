@@ -108,3 +108,46 @@ Generate coverage report:
 ```bash
 npm run test:coverage
 ```
+
+## Architecture
+
+This application follows the **Model-View-Controller (MVC)** pattern:
+
+- **Models** - Manage data and business logic (`CalendarModel`, `ScheduleManager`)
+- **Views** - Handle DOM rendering and user interface (`MonthView`, `ActivityFormView`)
+- **Controllers** - Coordinate between Models and Views (`CalendarController`, `ActivityController`)
+- **Services** - Provide cross-cutting concerns (`StorageService`)
+
+### Key Design Principles
+
+- **Single Responsibility Principle (SRP)** - Each class has one reason to change
+- **Dependency Injection** - Dependencies passed through constructors
+- **Encapsulation** - Private fields using JavaScript `#` syntax
+- **Separation of Concerns** - Clear boundaries between layers
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start local development server |
+| `npm run build` | Build for production (copies src/ and dependencies to public/) |
+| `npm test` | Run Jest tests |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run test:coverage` | Generate test coverage report |
+
+## Deployment
+
+The app is configured for automatic deployment on **Netlify**:
+1. **Push to GitHub** - Commits to `main`branch trigger deployment
+2. **Build process** - Netlify runs `npm run build`
+3. **Deploy** - Constents of `public/`directory are published
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
